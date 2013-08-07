@@ -1,0 +1,8 @@
+%h2 Currently Working On
+- if @my_issues.present?
+  = render 'issues/list', issues: @my_issues, paginate_param: 'my_issues_page'
+- else
+  .well.text-center
+    %span.lead
+      %i.icon-list-ul
+      You have no issues you're currently working on. Pick one now

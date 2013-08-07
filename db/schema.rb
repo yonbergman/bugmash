@@ -11,9 +11,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20130807145544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "issues", force: true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "state"
+    t.string   "status"
+    t.integer  "comment_count"
+    t.string   "pull_request_url"
+    t.datetime "gh_created_at"
+    t.datetime "gh_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "github_id"
+    t.string   "opened_by"
+    t.string   "assignee"
+    t.string   "org"
+    t.string   "repo"
+  end
+
+  add_index "issues", ["github_id"], name: "index_issues_on_github_id", using: :btree
+
+  create_table "issues_labels", id: false, force: true do |t|
+    t.integer "issue_id"
+    t.integer "label_id"
+  end
+
+  create_table "issues_users", id: false, force: true do |t|
+    t.integer "issue_id"
+    t.integer "user_id"
+  end
+
+  create_table "labels", force: true do |t|
+    t.string   "name"
+    t.string   "color"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "uid"
+    t.string   "nickname"
+    t.string   "image"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

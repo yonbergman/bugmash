@@ -1,0 +1,29 @@
+- if user_signed_in?
+  %header.navbar
+    %a.navbar-brand
+      Rails Bugmash
+      %i.icon-bug
+      TLV
+    %ul.nav.navbar-nav
+      %li
+        = link_to issues_path do
+          %i.icon-list-ul
+          %span Issues
+      %li
+        = link_to '/leaderboard' do
+          %i.icon-trophy
+          %span Leaderboard
+      %li
+        = link_to '#bugmash-il' do
+          %i.icon-comments
+          %span IRC
+
+    %ul.pull-right.nav.navbar-nav
+      %li.dropdown
+        %a.navbar-link.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}}
+          = avatar(current_user)
+          = current_user.name
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            = link_to t('layout.header.links.sign_out'), sign_out_path

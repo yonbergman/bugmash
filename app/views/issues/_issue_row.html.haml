@@ -1,0 +1,9 @@
+%tr
+  %td
+    = repo_label(issue)
+    = link_to issue.url do
+      = issue.title
+  %td
+    - issue.labels.each do |label|
+      = label_tag(label)
+  %td blah

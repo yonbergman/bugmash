@@ -1,0 +1,19 @@
+@import 'compass';
+@import 'twitter/bootstrap';
+@import 'font-awesome';
+
+@import 'layout';
+
+
+.avatar{
+  width: 20px;
+  height: 20px;
+  @include border-radius(20px);
+}
+
+
+
+.colored-label{
+  color: #FFF;
+  @include text-shadow(0 1px rgba(0,0,0,0.5));
+}
