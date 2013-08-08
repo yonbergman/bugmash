@@ -1,0 +1,8 @@
+%h2
+  Filtered Issues for
+  = link_to issues_path do
+    %span.label.label-info
+      %i.icon-remove
+      %span= @label.name
+
+= render 'issues/issues_table', issues: @open_issues

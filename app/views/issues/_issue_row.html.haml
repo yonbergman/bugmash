@@ -1,9 +1,22 @@
 %tr
   %td
+    = star_tag(issue)
     = repo_label(issue)
     = link_to issue.url do
       = issue.title
-  %td
     - issue.labels.each do |label|
-      = label_tag(label)
-  %td blah
+      = linked_label_tag(label)
+  %td
+    .avatars
+      - issue.users.find_each do |user|
+        = avatar(user)
+
+  %td
+    - if belongs_to_current_user?(issue)
+      %button.btn.btn-xs.btn-negative.disabled
+        %i.icon-cogs
+        WIP
+    - else
+      = link_to issue_path(issue, todo: :take), method: :put, class: 'btn btn-xs btn-default' do
+        %i.icon-plus
+        %span Take

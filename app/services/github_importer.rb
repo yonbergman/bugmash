@@ -1,15 +1,22 @@
 class GithubImporter
 
   DEFAULT_REPO = 'https://www.github.com/rails/rails'
-  REPO_REGEX = /https:\/\/github.com\/([\w\-_]+)\/([\w\-_]+)\/?/
-  ISSUE_REGEX = /https:\/\/github.com\/([\w\-_]+)\/([\w\-_]+)\/issues\/(\d+)\/?/
+  REPO_REGEX = /https:\/\/.*github.com\/([\w\-_]+)\/([\w\-_]+)\/?/
+  ISSUE_REGEX = /https:\/\/.*github.com\/([\w\-_]+)\/([\w\-_]+)\/issues\/(\d+)\/?/
 
   def query_repo(repo_url = DEFAULT_REPO)
     repo = breakdown_repo_url(repo_url)
-    issues = Octokit.issues repo
-    issues.map do |issue|
-      build_issue(issue)
+    all_issues = []
+    i = 0
+    while i < 50
+      issues = Octokit.issues repo, page: i
+      return all_issues if issues.empty?
+      i += 1
+      all_issues += issues.map do |issue|
+        build_issue(issue)
+      end
     end
+    all_issues
   end
 
   def query_issue(issue_url)
@@ -20,9 +27,11 @@ class GithubImporter
 
 
   def build_issue(issue)
+    ActionController::Parameters.permit_all_parameters = true
     issue_data = ActionController::Parameters.new(normalize_issue(issue))
     issue = Issue.where(github_id: issue_data[:github_id]).first_or_create
     issue.update(issue_data)
+    ActionController::Parameters.permit_all_parameters = false
     issue
   end
 
@@ -49,6 +58,7 @@ class GithubImporter
   end
 
   def repo(issue)
+    puts issue['html_url'] unless issue['html_url'].match(REPO_REGEX)
     issue['html_url'].match(REPO_REGEX)[2]
   end
 

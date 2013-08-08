@@ -10,7 +10,11 @@
           %i.icon-list-ul
           %span Issues
       %li
-        = link_to '/leaderboard' do
+        = link_to starred_issues_path do
+          %i.icon-star
+          %span Starred Issues
+      %li
+        = link_to leaderboard_issues_path do
           %i.icon-trophy
           %span Leaderboard
       %li

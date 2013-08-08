@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130807145544) do
+ActiveRecord::Schema.define(version: 20130808075949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20130807145544) do
     t.string   "title"
     t.string   "url"
     t.string   "state"
-    t.string   "status"
+    t.string   "status",           default: "open"
     t.integer  "comment_count"
     t.string   "pull_request_url"
     t.datetime "gh_created_at"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20130807145544) do
     t.string   "assignee"
     t.string   "org"
     t.string   "repo"
+    t.boolean  "starred",          default: false
   end
 
   add_index "issues", ["github_id"], name: "index_issues_on_github_id", using: :btree

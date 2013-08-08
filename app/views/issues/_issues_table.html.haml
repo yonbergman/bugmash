@@ -1,0 +1,5 @@
+%table.table.table-striped
+  %tbody
+    - issues.each do |issue|
+      = render 'issues/issue_row', :issue => issue
+= will_paginate issues, :renderer => BootstrapPaginationRenderer

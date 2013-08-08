@@ -1,0 +1,10 @@
+%h1 Bugmash Leaderboard
+%table.table.table-striped
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          = avatar(user)
+          %strong= user.name
+        %td
+          = user.done_issues

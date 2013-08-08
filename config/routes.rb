@@ -1,6 +1,15 @@
 Bugmash::Application.routes.draw do
 
-  resources :issues
+  resources :issues do
+    collection do
+      get :labels
+      get :starred
+      get :leaderboard
+    end
+    member do
+      post :take
+    end
+  end
 
   # authentication
   match '/auth/:provider/callback', :to => 'session#create', :via => [:get, :post]

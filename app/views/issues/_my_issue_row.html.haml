@@ -1,0 +1,23 @@
+%tr
+  %td
+    = repo_label(issue)
+    = link_to issue.url do
+      = issue.title
+    - issue.labels.each do |label|
+      = linked_label_tag(label)
+  %td
+    .avatars
+      - issue.users.find_each do |user|
+        = avatar(user)
+  %td
+    - if issue.done?
+      %button.btn.btn-xs.btn-success
+        %i.icon-ok
+        %span Done
+    - else
+      = link_to issue_path(issue, todo: :done), method: :put, class: 'btn btn-xs btn-success' do
+        %i.icon-ok
+        %span I'm Done
+      = link_to issue_path(issue, todo: :give_up), method: :put, class: 'btn btn-xs btn-warning' do
+        %i.icon-code
+        %span Give Up

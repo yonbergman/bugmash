@@ -1,6 +1,10 @@
-%h2 Currently Working On
+= form_for Issue.new, method: :post, html: {class: 'form-inline pull-right'} do |f|
+  = f.label :url, 'Add specific issue'
+  = f.text_field :url, placeholder: 'https://github.com/rails/turbolinks/issues/263', class: 'form-control', style: 'width: 350px;'
+  = f.submit '+', class: 'btn btn-default'
+%h2  Currently Working On
 - if @my_issues.present?
-  = render 'issues/list', issues: @my_issues, paginate_param: 'my_issues_page'
+  = render 'issues/my_issues_table', issues: @my_issues
 - else
   .well.text-center
     %span.lead
