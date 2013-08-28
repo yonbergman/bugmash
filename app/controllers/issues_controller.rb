@@ -64,6 +64,7 @@ class IssuesController < ApplicationController
     end
     @users = @users.keys
     @users.sort_by!(&:done_issues).reverse!
+    @count = Issue.done.count
   end
 
   def current_issue
