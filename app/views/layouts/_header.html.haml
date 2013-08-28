@@ -22,13 +22,13 @@
           %i.icon-comments
           %span IRC
       %li
-        = link_to 'http://guides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-code' do
+        = link_to 'http://guides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-code', taget: :_blank do
           %i.icon-book
           %span Getting Started Guide
 
     %ul.pull-right.nav.navbar-nav
       %li.dropdown
-        %a.navbar-link.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}}
+        %a.navbar-link.dropdown-toggle{href: '#', data: {toggle: :dropdown}}
           = avatar(current_user)
           = current_user.name
           %b.caret
