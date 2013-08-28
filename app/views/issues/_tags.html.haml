@@ -1,0 +1,6 @@
+%h2
+  %i.icon-tag
+  Find By Label
+.labels.well
+  - Label.find_each do |label|
+    = linked_label_tag(label)
