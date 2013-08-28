@@ -14,6 +14,9 @@
       %button.btn.btn-xs.btn-success
         %i.icon-ok
         %span Done
+      %a.btn.btn-xs.btn-info.tweet{:href => tweet_about(issue), :target => :_blank}
+        %i.icon-twitter
+        %span Tweet
     - else
       = link_to issue_path(issue, todo: :done), method: :put, class: 'btn btn-xs btn-success' do
         %i.icon-ok

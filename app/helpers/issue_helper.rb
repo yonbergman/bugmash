@@ -14,4 +14,13 @@ module IssueHelper
       end
     end
   end
+
+  def tweet_about(issue)
+    base = 'https://twitter.com/intent/tweet?'
+    params = {
+        text: "I just solved an issue in #{issue.repo} #{issue.url} #ruby #rails #hurrah #bugmash-tlv"
+    }
+    base + params.to_param
+  end
+
 end
