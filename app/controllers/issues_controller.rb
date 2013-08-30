@@ -18,6 +18,10 @@ class IssuesController < ApplicationController
     @open_issues = Issue.starred.ordered.open_issues.includes(:labels, :users).paginate(:page => params[:page])
   end
 
+  def wip
+    @issues = Issue.wip.ordered.paginate(page: params[:page])
+  end
+
   def leaderboard
     build_leaderboard
   end
