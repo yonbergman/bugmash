@@ -19,7 +19,7 @@ class IssuesController < ApplicationController
   end
 
   def wip
-    @issues = Issue.wip.ordered.paginate(page: params[:page])
+    @issues = Issue.not_done.includes(:users).reject {|i|i.users.empty?}
   end
 
   def leaderboard

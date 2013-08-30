@@ -1,4 +1,7 @@
 %h2
   %i.icon-gears
   Currently Working on
-= render 'issues/issues_table', issues: @issues
+%table.table.table-striped
+  %tbody
+    - @issues.each do |issue|
+      = render 'issues/issue_row', :issue => issue
