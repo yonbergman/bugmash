@@ -22,6 +22,11 @@ class IssuesController < ApplicationController
     @issues = Issue.not_done.includes(:users).reject {|i|i.users.empty?}
   end
 
+  def done
+    @issues = Issue.done
+  end
+
+
   def leaderboard
     build_leaderboard
   end

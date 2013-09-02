@@ -6,6 +6,7 @@ Bugmash::Application.routes.draw do
       get :starred
       get :leaderboard
       get :wip
+      get :done
     end
     member do
       post :take

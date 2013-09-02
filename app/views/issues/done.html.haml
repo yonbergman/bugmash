@@ -1,0 +1,7 @@
+%h2
+  %i.icon-thumbs-up-alt
+  Closed Issues
+%table.table.table-striped
+  %tbody
+    - @issues.each do |issue|
+      = render 'issues/issue_row', :issue => issue
